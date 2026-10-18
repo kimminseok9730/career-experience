@@ -77,7 +77,7 @@ export function jobCard(job){
    el('h3',{text:job.name}),
    el('span',{class:'tag',style:'color:'+readableOn(cat.color),text:cat.label}),
    el('p',{text:job.summary}),
-   el('span',{class:'state '+(ready?'ready':'preparing'),text:ready?'3D 체험 가능':'체험 준비 중'}),
+   el('span',{class:'state '+(ready?'ready':'preparing'),text:job.experienceLabel??(ready?'3D 체험 가능':'체험 준비 중')}),
   ));
 }
 

@@ -93,6 +93,7 @@ if(!job){
    topBar(job),
    el('div',{class:'detail-caption'},
     el('span',{class:'pill',text:cat.label}),
+    ...(job.experienceLabel?[el('span',{class:'pill',text:job.experienceLabel+' · 관찰 체험 가능'})]:[]),
     el('h1',{text:job.name}),
     el('p',{text:job.detail?.intro??job.summary}))),
   tabs,body,

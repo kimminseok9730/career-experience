@@ -496,6 +496,7 @@ export const JOBS = [
   }},
 
  {id:'forensic-pathologist', name:'법의관', category:'medical', experience:'preparing',
+  experienceLabel:'일부 구현됨',
   previewHref:'case.html', previewLabel:'법의관 사건 접수 체험',
   featured:true, isNew:false,
   summary:'사인을 밝혀 억울함이 남지 않게 하는 의사',
@@ -503,7 +504,7 @@ export const JOBS = [
   detail:{
    hero:'assets/heroes/forensic-pathologist-hero.jpg',
    intro:'사람이 왜 세상을 떠났는지 과학으로 확인하고, 밝혀진 사실과 남은 의문을 나누어 기록하는 의사입니다.',
-   note:'업무의 성격을 교육용으로 간추린 설명입니다. 자격 취득 경로와 법적 절차는 확인된 범위가 아니어서 다루지 않았습니다. 심장 관찰 구간을 먼저 체험할 수 있으며, 전체 사건 체험은 준비 중입니다.',
+   note:'일부 구현됨 · 관찰 체험 가능. 사건 브리핑, 부검실 이동, 심장 관찰, 전문감정 의뢰·회신과 업무 인계까지 체험할 수 있습니다. 전체 부검과 최종 사인 판단 구간은 추후 추가됩니다. 업무의 성격을 교육용으로 간추린 설명이며, 자격 취득 경로와 법적 절차는 다루지 않았습니다.',
    levels:forensicPathology,
   }},
 
