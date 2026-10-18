@@ -1,0 +1,893 @@
+{
+  "title": "상세 심장 해부 모델",
+  "version": "0.6",
+  "clinicalValidation": false,
+  "construction": "Synthetic anatomical approximation; not a patient reconstruction",
+  "unit": "metres; nominal presentation scale, not patient measurement",
+  "cutPlaneMetres": 0.0063,
+  "meshCount": 88,
+  "triangles": 905774,
+  "bytes": 23072716,
+  "parts": [
+    {
+      "id": "ventricles_back",
+      "label": "심실 심근 · 심실중격",
+      "group": "myocardium",
+      "part": "back",
+      "kind": "muscle",
+      "vertices": 54738,
+      "triangles": 99151,
+      "description": "비대칭 좌·우심실 공동과 두꺼운 좌심실벽. 수학적 재구성으로 벽두께는 실측치가 아님."
+    },
+    {
+      "id": "ventricles_front",
+      "label": "심실 심근 · 심실중격",
+      "group": "myocardium",
+      "part": "front",
+      "kind": "muscle",
+      "vertices": 44070,
+      "triangles": 77803,
+      "description": "비대칭 좌·우심실 공동과 두꺼운 좌심실벽. 수학적 재구성으로 벽두께는 실측치가 아님."
+    },
+    {
+      "id": "right_atrium_back",
+      "label": "우심방",
+      "group": "atria",
+      "part": "back",
+      "kind": "atrium",
+      "vertices": 19227,
+      "triangles": 34421,
+      "description": ""
+    },
+    {
+      "id": "right_atrium_front",
+      "label": "우심방",
+      "group": "atria",
+      "part": "front",
+      "kind": "atrium",
+      "vertices": 10369,
+      "triangles": 16702,
+      "description": ""
+    },
+    {
+      "id": "left_atrium_back",
+      "label": "좌심방",
+      "group": "atria",
+      "part": "back",
+      "kind": "atrium",
+      "vertices": 20501,
+      "triangles": 41012,
+      "description": ""
+    },
+    {
+      "id": "right_auricle",
+      "label": "우심방귀",
+      "group": "atria",
+      "part": "all",
+      "kind": "atrium",
+      "vertices": 2562,
+      "triangles": 5120,
+      "description": "심방귀 외형. 내부 빗살근은 별도로 재현하지 않음."
+    },
+    {
+      "id": "left_auricle",
+      "label": "좌심방귀",
+      "group": "atria",
+      "part": "all",
+      "kind": "atrium",
+      "vertices": 2562,
+      "triangles": 5120,
+      "description": "심방귀 외형. 내부 빗살근은 별도로 재현하지 않음."
+    },
+    {
+      "id": "aorta_back",
+      "label": "대동맥 · 대동맥궁",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 14417,
+      "triangles": 27434,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "aorta_front",
+      "label": "대동맥 · 대동맥궁",
+      "group": "great_vessels",
+      "part": "front",
+      "kind": "artery",
+      "vertices": 1266,
+      "triangles": 1112,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "brachiocephalic_back",
+      "label": "팔머리동맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 8902,
+      "triangles": 17637,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "left_carotid_back",
+      "label": "좌총경동맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 7426,
+      "triangles": 14678,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "left_subclavian_back",
+      "label": "좌쇄골하동맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 7795,
+      "triangles": 15414,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "pulmonary_trunk_back",
+      "label": "폐동맥줄기",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 689,
+      "triangles": 606,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "pulmonary_trunk_front",
+      "label": "폐동맥줄기",
+      "group": "great_vessels",
+      "part": "front",
+      "kind": "artery",
+      "vertices": 12105,
+      "triangles": 23441,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "left_pulmonary_artery_back",
+      "label": "좌폐동맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 10775,
+      "triangles": 17361,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "left_pulmonary_artery_front",
+      "label": "좌폐동맥",
+      "group": "great_vessels",
+      "part": "front",
+      "kind": "artery",
+      "vertices": 6325,
+      "triangles": 8359,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "right_pulmonary_artery_back",
+      "label": "우폐동맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "artery",
+      "vertices": 13416,
+      "triangles": 25161,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "right_pulmonary_artery_front",
+      "label": "우폐동맥",
+      "group": "great_vessels",
+      "part": "front",
+      "kind": "artery",
+      "vertices": 1842,
+      "triangles": 1936,
+      "description": "분기 혈관 내강의 겹치는 벽을 불리언 연산으로 제거. 연결 형상은 합성이며 실측 혈관이 아님."
+    },
+    {
+      "id": "svc_back",
+      "label": "상대정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "ivc_back",
+      "label": "하대정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "lspv_back",
+      "label": "좌상폐정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "lipv_back",
+      "label": "좌하폐정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "rspv_back",
+      "label": "우상폐정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "ripv_back",
+      "label": "우하폐정맥",
+      "group": "great_vessels",
+      "part": "back",
+      "kind": "vein",
+      "vertices": 11520,
+      "triangles": 23040,
+      "description": "일반적 주행을 참고한 수작업 재구성. 심방·심실과의 내강 연결은 단순화."
+    },
+    {
+      "id": "mitral_annulus",
+      "label": "승모판 판륜",
+      "group": "valves",
+      "part": "all",
+      "kind": "annulus",
+      "vertices": 2081,
+      "triangles": 4160,
+      "description": ""
+    },
+    {
+      "id": "mitral_leaflet_1",
+      "label": "승모판 판엽 1",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 990,
+      "triangles": 1802,
+      "description": ""
+    },
+    {
+      "id": "mitral_margin_1",
+      "label": "승모판 자유연",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 852,
+      "triangles": 1700,
+      "description": ""
+    },
+    {
+      "id": "mitral_leaflet_2",
+      "label": "승모판 판엽 2",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 990,
+      "triangles": 1802,
+      "description": ""
+    },
+    {
+      "id": "mitral_margin_2",
+      "label": "승모판 자유연",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 852,
+      "triangles": 1700,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_annulus",
+      "label": "삼첨판 판륜",
+      "group": "valves",
+      "part": "all",
+      "kind": "annulus",
+      "vertices": 2081,
+      "triangles": 4160,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_leaflet_1",
+      "label": "삼첨판 판엽 1",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 990,
+      "triangles": 1802,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_margin_1",
+      "label": "삼첨판 자유연",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 852,
+      "triangles": 1700,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_leaflet_2",
+      "label": "삼첨판 판엽 2",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 990,
+      "triangles": 1802,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_margin_2",
+      "label": "삼첨판 자유연",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 852,
+      "triangles": 1700,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_leaflet_3",
+      "label": "삼첨판 판엽 3",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 990,
+      "triangles": 1802,
+      "description": ""
+    },
+    {
+      "id": "tricuspid_margin_3",
+      "label": "삼첨판 자유연",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 852,
+      "triangles": 1700,
+      "description": ""
+    },
+    {
+      "id": "lv_papillary_1",
+      "label": "좌심실 유두근 1",
+      "group": "papillary",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 2818,
+      "triangles": 5632,
+      "description": "심실 공동 표면에 기저부를 맞추고 심근 안쪽으로 삽입한 합성 유두근. 실제 표본의 부착 위치를 복원한 것은 아님."
+    },
+    {
+      "id": "lv_chordae_1",
+      "label": "좌심실 힘줄 1",
+      "group": "chordae",
+      "part": "all",
+      "kind": "chord",
+      "vertices": 3416,
+      "triangles": 6736,
+      "description": ""
+    },
+    {
+      "id": "lv_papillary_2",
+      "label": "좌심실 유두근 2",
+      "group": "papillary",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 2818,
+      "triangles": 5632,
+      "description": "심실 공동 표면에 기저부를 맞추고 심근 안쪽으로 삽입한 합성 유두근. 실제 표본의 부착 위치를 복원한 것은 아님."
+    },
+    {
+      "id": "lv_chordae_2",
+      "label": "좌심실 힘줄 2",
+      "group": "chordae",
+      "part": "all",
+      "kind": "chord",
+      "vertices": 3416,
+      "triangles": 6736,
+      "description": ""
+    },
+    {
+      "id": "rv_papillary_1",
+      "label": "우심실 유두근 1",
+      "group": "papillary",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 2818,
+      "triangles": 5632,
+      "description": "심실 공동 표면에 기저부를 맞추고 심근 안쪽으로 삽입한 합성 유두근. 실제 표본의 부착 위치를 복원한 것은 아님."
+    },
+    {
+      "id": "rv_chordae_1",
+      "label": "우심실 힘줄 1",
+      "group": "chordae",
+      "part": "all",
+      "kind": "chord",
+      "vertices": 5124,
+      "triangles": 10104,
+      "description": ""
+    },
+    {
+      "id": "rv_papillary_2",
+      "label": "우심실 유두근 2",
+      "group": "papillary",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 2818,
+      "triangles": 5632,
+      "description": "심실 공동 표면에 기저부를 맞추고 심근 안쪽으로 삽입한 합성 유두근. 실제 표본의 부착 위치를 복원한 것은 아님."
+    },
+    {
+      "id": "rv_chordae_2",
+      "label": "우심실 힘줄 2",
+      "group": "chordae",
+      "part": "all",
+      "kind": "chord",
+      "vertices": 5124,
+      "triangles": 10104,
+      "description": ""
+    },
+    {
+      "id": "rv_papillary_3",
+      "label": "우심실 유두근 3",
+      "group": "papillary",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 2818,
+      "triangles": 5632,
+      "description": "심실 공동 표면에 기저부를 맞추고 심근 안쪽으로 삽입한 합성 유두근. 실제 표본의 부착 위치를 복원한 것은 아님."
+    },
+    {
+      "id": "rv_chordae_3",
+      "label": "우심실 힘줄 3",
+      "group": "chordae",
+      "part": "all",
+      "kind": "chord",
+      "vertices": 5124,
+      "triangles": 10104,
+      "description": ""
+    },
+    {
+      "id": "aortic_annulus",
+      "label": "대동맥판 판륜",
+      "group": "valves",
+      "part": "all",
+      "kind": "annulus",
+      "vertices": 901,
+      "triangles": 1800,
+      "description": ""
+    },
+    {
+      "id": "aortic_cusp_1",
+      "label": "대동맥판 반월판엽 1",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "aortic_cusp_2",
+      "label": "대동맥판 반월판엽 2",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "aortic_cusp_3",
+      "label": "대동맥판 반월판엽 3",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "pulmonic_annulus",
+      "label": "폐동맥판 판륜",
+      "group": "valves",
+      "part": "all",
+      "kind": "annulus",
+      "vertices": 901,
+      "triangles": 1800,
+      "description": ""
+    },
+    {
+      "id": "pulmonic_cusp_1",
+      "label": "폐동맥판 반월판엽 1",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "pulmonic_cusp_2",
+      "label": "폐동맥판 반월판엽 2",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "pulmonic_cusp_3",
+      "label": "폐동맥판 반월판엽 3",
+      "group": "valves",
+      "part": "all",
+      "kind": "valve",
+      "vertices": 672,
+      "triangles": 1230,
+      "description": ""
+    },
+    {
+      "id": "trabeculae_back",
+      "label": "심실 육주",
+      "group": "trabeculae",
+      "part": "back",
+      "kind": "trabecula",
+      "vertices": 33357,
+      "triangles": 60310,
+      "description": "공동의 실제 표면에 투영한 불규칙 근육 능선과 연결 가지. 개별 표본의 육주 복원은 아님."
+    },
+    {
+      "id": "trabeculae_front",
+      "label": "심실 육주",
+      "group": "trabeculae",
+      "part": "front",
+      "kind": "trabecula",
+      "vertices": 29789,
+      "triangles": 53222,
+      "description": "공동의 실제 표면에 투영한 불규칙 근육 능선과 연결 가지. 개별 표본의 육주 복원은 아님."
+    },
+    {
+      "id": "moderator_band",
+      "label": "우심실 조절띠",
+      "group": "trabeculae",
+      "part": "all",
+      "kind": "trabecula",
+      "vertices": 882,
+      "triangles": 1760,
+      "description": "심실중격에서 전방 유두근 기저부로 연결한 합성 조절띠. 부착 위치는 근사."
+    },
+    {
+      "id": "lad",
+      "label": "좌전하행동맥",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "lad_branch_0",
+      "label": "좌전하행동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lad_branch_1",
+      "label": "좌전하행동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lad_branch_2",
+      "label": "좌전하행동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lad_branch_3",
+      "label": "좌전하행동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "rca",
+      "label": "우관상동맥",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "rca_branch_0",
+      "label": "우관상동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "rca_branch_1",
+      "label": "우관상동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "rca_branch_2",
+      "label": "우관상동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "rca_branch_3",
+      "label": "우관상동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lcx",
+      "label": "좌회선동맥",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "lcx_branch_0",
+      "label": "좌회선동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lcx_branch_1",
+      "label": "좌회선동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lcx_branch_2",
+      "label": "좌회선동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "lcx_branch_3",
+      "label": "좌회선동맥 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "diagonal1",
+      "label": "제1대각가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "diagonal2",
+      "label": "제2대각가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "right_marginal",
+      "label": "우변연가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "pda",
+      "label": "후심실사이가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "pda_branch_0",
+      "label": "후심실사이가지 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "pda_branch_1",
+      "label": "후심실사이가지 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "pda_branch_2",
+      "label": "후심실사이가지 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "pda_branch_3",
+      "label": "후심실사이가지 소분지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 258,
+      "triangles": 512,
+      "description": ""
+    },
+    {
+      "id": "obtuse_marginal",
+      "label": "둔각변연가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "posterolateral",
+      "label": "후외측가지",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 1472,
+      "triangles": 2940,
+      "description": ""
+    },
+    {
+      "id": "epicardial_fat",
+      "label": "심외막 지방 · 관상고랑",
+      "group": "fat",
+      "part": "all",
+      "kind": "fat",
+      "vertices": 32190,
+      "triangles": 64368,
+      "description": ""
+    },
+    {
+      "id": "left_main",
+      "label": "좌관상동맥 주간부",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 902,
+      "triangles": 1800,
+      "description": ""
+    },
+    {
+      "id": "right_coronary_root",
+      "label": "우관상동맥 기시부",
+      "group": "coronaries",
+      "part": "all",
+      "kind": "coronary",
+      "vertices": 902,
+      "triangles": 1800,
+      "description": ""
+    },
+    {
+      "id": "great_cardiac_vein",
+      "label": "큰심장정맥",
+      "group": "veins",
+      "part": "all",
+      "kind": "cardiac_vein",
+      "vertices": 1402,
+      "triangles": 2800,
+      "description": ""
+    },
+    {
+      "id": "middle_cardiac_vein",
+      "label": "중간심장정맥",
+      "group": "veins",
+      "part": "all",
+      "kind": "cardiac_vein",
+      "vertices": 1402,
+      "triangles": 2800,
+      "description": ""
+    },
+    {
+      "id": "coronary_sinus",
+      "label": "관상정맥굴",
+      "group": "veins",
+      "part": "all",
+      "kind": "cardiac_vein",
+      "vertices": 1402,
+      "triangles": 2800,
+      "description": ""
+    }
+  ]
+}

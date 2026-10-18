@@ -1,0 +1,376 @@
+/* App shell — home and job detail. The 3D experience keeps its own dark style.css. */
+
+/* Paperlogy — SIL OFL 1.1. Subset to Hangul/Latin and converted to woff2;
+   licence text and provenance in vendor/fonts/PAPERLOGY-LICENSE.txt.
+   Used for the display layer only — body copy stays on the system face so long
+   passages of job description remain easy to read. */
+@font-face{font-family:'Paperlogy';font-style:normal;font-weight:700;font-display:swap;
+ src:url('vendor/fonts/paperlogy-700.woff2') format('woff2')}
+@font-face{font-family:'Paperlogy';font-style:normal;font-weight:800;font-display:swap;
+ src:url('vendor/fonts/paperlogy-800.woff2') format('woff2')}
+:root{
+ --blue:#2f6fed; --blue-dark:#1b52c4; --blue-soft:#eaf1ff;
+ --ink:#151a22; --muted:#6b7684; --line:#e6eaf1;
+ --bg:#eef1f6; --card:#fff; --warn:#fff6d8; --warn-line:#f0dfa4;
+ --font:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;
+ --display:'Paperlogy','Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+ --shadow:0 2px 10px #1a2b4a0f, 0 1px 3px #1a2b4a14;
+ /* wide screens keep a proportional gutter rather than a fixed column, so nothing looks stranded */
+ --content:min(1560px,93vw);
+ /* the detail page is for reading, not browsing, so its blocks share one narrower column */
+ --read:min(1180px,93vw);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.6 var(--font);-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+/* the mock-up is a phone screen; on a wide display it becomes a centred column */
+.app{max-width:440px;margin:0 auto;min-height:100dvh;background:var(--card);
+ box-shadow:0 0 0 1px #0000000a,0 18px 60px #1a2b4a1a;padding-bottom:84px;position:relative;overflow:hidden}
+
+/* ---------- placeholder art: stands in until real photography arrives ---------- */
+.art{position:relative;display:grid;place-items:center;overflow:hidden;background:var(--blue)}
+.art::after{content:'';position:absolute;inset:0;background:linear-gradient(140deg,#ffffff26,#0000002e)}
+.art svg{width:38%;max-width:84px;height:auto;opacity:.92;filter:drop-shadow(0 2px 6px #0003);position:relative;z-index:1}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.art[data-ratio="2:1"]{aspect-ratio:2/1}
+.art[data-ratio="3:2"]{aspect-ratio:3/2}
+.art[data-ratio="16:9"]{aspect-ratio:16/9}
+.art[data-ratio="4:3"]{aspect-ratio:4/3}
+.art[data-ratio="1:1"]{aspect-ratio:1/1}
+
+/* ---------- home: hero ---------- */
+.hero{position:relative;color:#fff}
+.hero-inner{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-inner>*{pointer-events:auto}
+.hero .art{aspect-ratio:2/1.3;border-radius:0}
+/* the wordmark and tagline are dark navy, so lift the top of the photo instead of darkening it */
+.hero .art::after{background:linear-gradient(180deg,#fffffff0 0%,#ffffffcc 26%,#ffffff8a 44%,#ffffff33 60%,#ffffff00 76%)}
+.hero-top{position:absolute;inset:5px 14px auto 14px;z-index:3;display:flex;align-items:start;justify-content:space-between;gap:10px}
+.brand{font:800 27px/1.15 var(--font);letter-spacing:-.5px}
+.brand b{color:#f0ac16}
+.brand img{width:clamp(150px,46vw,260px);height:auto;margin-left:calc(clamp(150px,46vw,260px) * -.045);margin-top:calc(clamp(150px,46vw,260px) * -.015)}
+.brand span{display:block;font:700 12.5px/1.45 var(--font);margin-top:5px;color:#20304a;letter-spacing:-.03em}
+.brand span b{color:var(--blue);font-weight:800}
+.hero-icons{display:flex;gap:6px;margin-top:8px}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+ background:#ffffffc7;color:#20304a;backdrop-filter:blur(6px);box-shadow:0 1px 4px #16294a1f}
+.icon-btn svg{width:18px;height:18px}
+.hero-tag{position:absolute;right:15px;left:auto;top:56px;z-index:3;margin:0;
+ font:800 13.5px/1.5 var(--font);text-align:right;color:#14305e;
+ text-shadow:0 0 10px #fff,0 0 22px #fff,0 0 36px #ffffffe6,0 1px 2px #ffffffee}
+
+/* ---------- search ---------- */
+.search{margin:10px 16px 0;position:relative;z-index:4;display:flex;align-items:center;gap:10px;
+ background:var(--card);border-radius:30px;padding:12px 16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.search svg{width:19px;height:19px;color:var(--muted);flex:none}
+.search input{flex:1;min-width:0;border:0;outline:0;font:400 14px/1.4 var(--font);background:none;color:var(--ink)}
+.search input::placeholder{color:#9aa3b0}
+/* only the home screen tucks the bar up over the hero photograph */
+.search--hero{margin-top:-24px}
+
+/* ---------- category chips ---------- */
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:18px 16px 4px}
+.cat{display:grid;gap:5px;justify-items:center;padding:11px 3px;border:1px solid var(--line);border-radius:13px;
+ background:var(--card);font:600 12px/1.25 var(--font);color:var(--ink);text-align:center;box-shadow:0 1px 2px #1a2b4a0a}
+.cat svg{width:21px;height:21px}
+.cat[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 12px #2f6fed4d}
+.cat[aria-pressed=true] svg{color:#fff!important}
+
+/* ---------- sections ---------- */
+.section{padding:22px 16px 0}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.section-head h2{margin:0;font:800 17px/1.4 var(--font);letter-spacing:-.3px;
+ display:flex;align-items:center;gap:8px}
+.section-head h2 svg{width:19px;height:19px;color:var(--blue);flex:none}
+.more{font:600 12px/1 var(--font);color:var(--muted);display:flex;align-items:center;gap:3px}
+.more svg{width:13px;height:13px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.job{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
+ border-radius:14px;overflow:hidden;box-shadow:var(--shadow);text-align:left}
+.job .art{border-radius:0}
+.job-body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.job h3{margin:0;font:700 14px/1.4 var(--font);letter-spacing:-.2px}
+.job .tag{font:700 12px/1.4 var(--font)}
+/* a saved card carries its own remove button, laid out where the card would be */
+.saved-item{position:relative;display:flex;min-width:0}
+.saved-item>.job{flex:1;min-width:0}
+/* z-index must clear the job photo (.art img sits at 2) or the picture swallows the click */
+.unsave{position:absolute;top:8px;right:8px;z-index:3;width:32px;height:32px;padding:0;border:none;
+ border-radius:50%;display:grid;place-items:center;cursor:pointer;color:#39414f;
+ background:#fffffff0;box-shadow:0 2px 9px #00000033}
+.unsave svg{width:15px;height:15px;stroke-width:2.3}
+/* the visible circle stays small; the tappable area is a comfortable 46px */
+.unsave::after{content:'';position:absolute;inset:-7px}
+.unsave:hover{background:#fff;color:#d8382f}
+.unsave:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.job p{margin:2px 0 0;font:400 12.5px/1.55 var(--font);color:var(--muted);flex:1}
+.state{margin-top:9px;padding:7px 8px;border-radius:8px;font:700 12.5px/1.3 var(--font);text-align:center}
+.state.ready{background:var(--blue);color:#fff}
+.state.preparing{background:#f1f3f7;color:#676e79}
+.empty{padding:30px 6px;text-align:center;color:var(--muted);font-size:13px}
+/* nothing saved yet: a normal state, so it points at where to find jobs */
+.blank{display:flex;flex-direction:column;align-items:center;gap:10px;margin:0 16px;padding:46px 22px 40px;
+ border:1px dashed var(--line);border-radius:16px;background:#fbfcfe;text-align:center}
+.blank>svg{width:34px;height:34px;color:#c3cad6;stroke-width:1.5}
+.blank h2{margin:2px 0 0;font:800 16px/1.4 var(--display);color:var(--ink)}
+.blank p{margin:0;max-width:30ch;font:400 12.5px/1.7 var(--font);color:var(--muted)}
+.blank .btn{margin-top:8px;width:auto;padding-inline:20px;text-decoration:none}
+
+/* ---------- explore screen ---------- */
+.page-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px 2px}
+.page-top h1{flex:1;min-width:0}
+.page-top .back{flex:none;background:#f1f3f7;color:var(--ink);width:34px;height:34px;box-shadow:none}
+.page-top h1{margin:0;font:800 21px/1.4 var(--display);letter-spacing:-.02em}
+.page-top img{height:26px;width:auto;display:block}
+.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 16px 0}
+.tools .count{margin-right:auto;font:700 13px/1 var(--display);color:var(--muted)}
+/* An author `display` overrides the browser's own [hidden] rule, so hiding a flex or grid
+   element does nothing without this. One rule rather than a patch per component. */
+[hidden]{display:none!important}
+
+.toggle{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);
+ border-radius:999px;font:600 12.5px/1 var(--font);background:var(--card);color:var(--ink)}
+.toggle svg{width:15px;height:15px}
+.toggle[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.toggle.group[aria-pressed=true]{background:#eef3ff;border-color:#c9daff;color:var(--blue-dark)}
+.sort{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+ color:var(--ink);font:600 12.5px/1 var(--font);width:auto}
+
+/* ---------- settings screen ---------- */
+.settings-group{padding:22px 16px 0}
+.settings-group h2{margin:0 0 8px;font:800 16px/1.4 var(--display);display:flex;align-items:center;gap:7px}
+.settings-group h2::before{content:'';width:4px;height:16px;border-radius:2px;background:var(--blue)}
+.settings-group .note{margin:0 0 12px}
+.choices{display:grid;gap:10px}
+.choice{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;text-align:left;
+ padding:15px 16px;border:1.5px solid var(--line);border-radius:13px;background:var(--card);box-shadow:var(--shadow)}
+.choice strong{font:800 15px/1.4 var(--display);grid-column:1}
+.choice span{font:400 12.5px/1.6 var(--font);color:var(--muted);grid-column:1}
+.choice svg{grid-column:2;grid-row:1/3;width:22px;height:22px;color:#c8d0dd}
+.choice[aria-checked=true]{border-color:var(--blue);background:var(--blue-soft)}
+.choice[aria-checked=true] svg{color:var(--blue)}
+.choice[aria-checked=true] span{color:#3d5680}
+
+/* ---------- bottom nav ---------- */
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:440px;z-index:10;
+ display:grid;grid-template-columns:repeat(4,1fr);background:#fffffff2;backdrop-filter:blur(10px);
+ border-top:1px solid var(--line);padding:9px 0 max(9px,env(safe-area-inset-bottom))}
+.nav button{display:grid;gap:3px;justify-items:center;font:600 12px/1.3 var(--font);color:#6d737d}
+.nav svg{width:21px;height:21px}
+.nav button[aria-current=page]{color:var(--blue)}
+
+/* ---------- job detail ---------- */
+.detail-top{position:absolute;inset:12px 12px auto 12px;z-index:5;display:flex;align-items:center;justify-content:space-between;color:#fff}
+.detail-top .brand{display:flex;align-items:center;line-height:0;padding:7px 15px;border-radius:999px;
+ background:#ffffffe8;backdrop-filter:blur(8px);box-shadow:0 4px 18px #00000038}
+.detail-top .brand img{width:clamp(108px,10.5vw,164px);height:auto;margin:0}
+.detail-top .icon-btn{background:#ffffff2e;color:#fff;box-shadow:none}
+/* a saved job shows a filled bookmark rather than an outline */
+.detail-top .icon-btn[aria-pressed=true]{background:#fff;color:var(--blue)}
+.detail-top .icon-btn[aria-pressed=true] svg{fill:currentColor}
+.detail-hero{position:relative}
+.detail-hero .art{aspect-ratio:16/10}
+.detail-hero .art::after{z-index:3;
+ background:linear-gradient(180deg,#00000080 0%,#0000002b 20%,#00000017 45%,#0000009e 78%,#000000d1 100%)}
+/* the subject's head is at the top of these photographs, so the crop comes off the foot */
+.detail-hero .art img{object-position:50% 0%}
+.detail-caption{position:absolute;left:18px;right:18px;bottom:16px;z-index:3;color:#fff}
+.pill{display:inline-block;background:var(--blue);color:#fff;border-radius:20px;padding:4px 12px;font:700 12.5px/1.4 var(--font);margin-bottom:8px}
+.detail-caption h1{margin:0 0 7px;font:800 28px/1.25 var(--font);letter-spacing:-.8px;text-shadow:0 2px 12px #0007}
+.detail-caption p{margin:0;font:500 13px/1.6 var(--font);text-shadow:0 1px 8px #0008}
+
+.levels{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin:14px 16px 0;
+ background:#f1f3f7;border-radius:11px;padding:4px}
+.levels button{padding:10px 2px;border-radius:8px;font:700 13px/1.3 var(--font);color:#5d6571}
+.levels button[aria-selected=true]{background:var(--blue);color:#fff;box-shadow:0 2px 8px #2f6fed3d}
+
+.qa{margin:16px;background:var(--blue-soft);border-radius:13px;padding:16px 16px 17px;display:flex;gap:12px}
+.qa svg{width:26px;height:26px;flex:none;margin-top:1px}
+.qa h3{margin:0 0 7px;font:800 14.5px/1.5 var(--font);color:#1b52c4}
+.qa p{margin:0;font:400 13.5px/1.75 var(--font);color:#2b3442}
+
+.sub{margin:22px 16px 11px;display:flex;align-items:center;gap:7px;font:800 16px/1.4 var(--font)}
+.sub::before{content:'';width:4px;height:17px;border-radius:2px;background:var(--blue)}
+/* On a phone three columns leave about nine characters to a line, which breaks the
+   titles mid-word. Each task is a row there — picture left, words right — and only
+   becomes a column of three once the screen is wide enough to carry them. */
+.tasks{display:grid;grid-template-columns:1fr;gap:9px;margin:0 16px}
+.task{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+ box-shadow:var(--shadow);display:grid;grid-template-columns:104px 1fr;align-items:center}
+.task .art{border-radius:0;height:100%}
+.task-body{padding:11px 13px 12px}
+.task h4{margin:0 0 4px;font:700 13.5px/1.4 var(--font)}
+.task p{margin:0;font:400 12px/1.6 var(--font);color:var(--muted)}
+
+.callout{margin:16px;background:var(--warn);border:1px solid var(--warn-line);border-radius:13px;
+ padding:14px 15px;display:flex;align-items:center;gap:13px}
+.callout .art{width:58px;flex:none;border-radius:10px;
+ /* The picture's cream and the box's cream are both flat fields, and JPEG cannot hold an
+    exact colour, so any tiny difference showed up as a faint square. Only the border
+    needs to dissolve: a round fade also ate the corners and the foot of the drawing
+    (the chef's pot), so two crossed gradients fade a narrow band on each side instead
+    and leave the middle untouched. No future picture has to match the box exactly. */
+ -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),
+                    linear-gradient(180deg,transparent,#000 6%,#000 94%,transparent);
+ -webkit-mask-composite:source-in;
+         mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),
+                    linear-gradient(180deg,transparent,#000 6%,#000 94%,transparent);
+         mask-composite:intersect}
+.callout p{margin:0;font:700 13.5px/1.65 var(--font);color:#6b5312}
+
+.note{margin:0 16px;font:400 12.5px/1.7 var(--font);color:var(--muted)}
+.actions{display:grid;grid-template-columns:1fr 1.15fr;gap:10px;padding:20px 16px 26px}
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:14px 10px;border-radius:12px;
+ font:700 14px/1.3 var(--font);border:1.5px solid var(--blue);color:var(--blue);background:var(--card)}
+.btn svg{width:17px;height:17px}
+.btn.fill{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 6px 18px #2f6fed40}
+.btn.off{border-color:var(--line);color:#696f78;background:#f6f7fa;cursor:not-allowed}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:100px;z-index:20;background:#1d2530f2;color:#fff;
+ padding:11px 17px;border-radius:22px;font:600 13px/1.4 var(--font);box-shadow:0 8px 26px #0003}
+
+@media(max-width:420px){
+ .brand{font-size:24px}
+ .detail-caption h1{font-size:25px}
+ .cats{grid-template-columns:repeat(5,1fr);gap:5px}
+ .cat{font-size:12px;letter-spacing:-.4px;padding:9px 0}
+ .cat span{white-space:nowrap}
+}
+
+/* ---------- 넓은 화면에서는 폭을 꽉 채운다 ----------
+   폰에서는 위의 기본값(한 컬럼 앱)이 그대로 쓰인다.
+   넓어지면 카드 테두리를 없애 화면 전체를 쓰고, 읽는 영역만 가운데로 모은다. */
+@media(min-width:720px){
+ .app{max-width:none;box-shadow:none;padding-bottom:104px}
+ .hero .art{aspect-ratio:3.4/1;min-height:260px}
+ .hero-inner{left:50%;right:auto;transform:translateX(-50%);width:min(1700px,96vw)}
+ .hero-top{inset:clamp(6px,.5vw,14px) 0 auto 0}
+ /* everything in the hero grows with the viewport instead of staying phone sized */
+ .brand img{width:clamp(250px,32vw,640px);margin-left:calc(clamp(250px,32vw,640px) * -.045);margin-top:calc(clamp(250px,32vw,640px) * -.015)}
+ .brand span{font-weight:800;color:#16294a;font-size:clamp(15px,1.7vw,32px);
+  margin-top:clamp(4px,.5vw,12px);letter-spacing:-.035em;text-shadow:0 0 14px #ffffffd9}
+ .hero-tag{left:auto;right:0;bottom:auto;top:clamp(104px,11vw,230px);
+  text-align:right;font-size:clamp(15px,1.55vw,31px);padding:0}
+ .icon-btn{width:clamp(38px,2.9vw,52px);height:clamp(38px,2.9vw,52px)}
+ .hero-icons{margin-top:clamp(10px,1vw,22px)}
+ .icon-btn svg{width:48%;height:48%}
+ .search{margin:12px auto 0;max-width:min(760px,93vw);padding:clamp(14px,1.1vw,20px) clamp(20px,1.6vw,28px)}
+ .search--hero{margin-top:clamp(-34px,-2.2vw,-24px)}
+ .search input{font-size:clamp(15px,1.05vw,18px)}
+ .search svg{width:clamp(19px,1.5vw,24px);height:clamp(19px,1.5vw,24px)}
+ .cats{grid-template-columns:repeat(10,1fr);max-width:min(1240px,93vw);margin:0 auto;padding:24px 0 4px;gap:10px}
+ .cat{font-size:clamp(12px,.8vw,14px);padding:clamp(10px,.9vw,16px) 2px;gap:7px}
+ .cat svg{width:clamp(21px,1.7vw,28px);height:clamp(21px,1.7vw,28px)}
+ .section{max-width:var(--content);margin:0 auto;padding:clamp(26px,2.2vw,40px) 0 0}
+ .page-top,.tools,.settings-group{max-width:var(--content);margin-inline:auto;padding-inline:0}
+ /* a settings form does not need the full width; its title follows it in rather than
+    staying out at the browsing measure, so the page reads as one column */
+ .app--form .page-top,.settings-group{max-width:min(820px,93vw)}
+ .app--read .page-top,.app--read .section,.app--read .note,.app--read .actions{
+  max-width:var(--read);margin-inline:auto;padding-inline:0}
+ .app--read .subject p,.app--read .step p{font-size:clamp(12.5px,.95vw,15px)}
+ .app--read .subject-name,.app--read .step h3{font-size:clamp(13.5px,1.1vw,17px)}
+ .settings-group h2{font-size:clamp(16px,1.3vw,21px)}
+ .choice strong{font-size:clamp(15px,1.15vw,19px)}
+ .choice span{font-size:clamp(12.5px,.95vw,15px)}
+ .page-top h1{font-size:clamp(21px,1.8vw,30px)}
+ .page-top img{height:clamp(26px,2.4vw,40px)}
+ .toggle,.sort{font-size:clamp(12.5px,.95vw,15px);padding:clamp(8px,.7vw,12px) clamp(12px,1vw,18px)}
+ .tools .count{font-size:clamp(13px,1.05vw,17px)}
+ .section-head h2{font-size:clamp(17px,1.4vw,23px)}
+ .more{font-size:clamp(12px,.95vw,15px)}
+ .grid{grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.2vw,22px)}
+ .job h3{font-size:clamp(15px,1.1vw,19px)}
+ .job .tag{font-size:clamp(12px,.85vw,14px)}
+ .job p{font-size:clamp(12.5px,.92vw,15px)}
+ .state{font-size:clamp(12.5px,.9vw,14.5px);padding:clamp(8px,.7vw,12px)}
+ .nav{width:auto;max-width:none;bottom:18px;border:1px solid var(--line);border-radius:999px;
+  padding:9px 8px;box-shadow:0 12px 34px #16294a24;grid-template-columns:repeat(4,minmax(96px,1fr))}
+ /* the detail page keeps a narrow measure — a full width line of body text is unreadable */
+ /* 3:1 threw away 41% of a 16:9 photograph and took the subject's head with it.
+    Height is set directly here: an aspect-ratio box with a max-height gives up width
+    instead of height, and the hero stopped reaching the edges. */
+ .detail-hero .art{aspect-ratio:auto;height:min(clamp(300px,68vh,720px),44vw)}
+ /* A wide screen is wider than any of these photographs, so cropping to fill it always cut
+    a third of the picture away. The whole photograph now stands at full height in the
+    middle, its edges feathered, and the width left over is the same picture blurred. */
+ .detail-hero .art::before{content:'';position:absolute;inset:-48px;z-index:1;
+  background:var(--photo,none) center/cover;filter:blur(36px) brightness(.7) saturate(1.1)}
+ .detail-hero .art img{inset:0 auto;left:50%;transform:translateX(-50%);width:auto;height:100%;max-width:none;
+  object-fit:cover;object-position:50% 50%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent)}
+ .detail-top{left:50%;right:auto;transform:translateX(-50%);width:var(--read);inset-block:clamp(18px,2vw,34px) auto}
+ .detail-caption{left:50%;right:auto;transform:translateX(-50%);width:var(--read);bottom:clamp(22px,2.4vw,40px)}
+ .detail-caption h1{font-size:clamp(32px,3.1vw,56px)}
+ .detail-caption p{max-width:680px;font-size:clamp(13px,1.05vw,18px)}
+ /* every block on the detail page starts on the same line; the browsing pages stay wide.
+    Order matters here: both rules have the same weight, so the detail one comes last. */
+ .note,.blank{max-width:var(--content);margin-inline:auto}
+ .levels,.qa,.tasks,.callout,.sub,.detail-note{max-width:var(--read);margin-inline:auto}
+ .blank h2{font-size:clamp(16px,1.3vw,21px)}
+ .blank p{font-size:clamp(12.5px,1vw,15px);max-width:42ch}
+ .actions{max-width:var(--read);margin-inline:auto;justify-content:center;
+  grid-template-columns:minmax(200px,320px) minmax(220px,380px)}
+ .qa p{font-size:clamp(13.5px,1vw,16px)}
+ .sub{font-size:clamp(16px,1.3vw,21px)}
+
+ /* The task illustrations grow with the column, so without this the picture ends up
+    many times the height of the words under it and the card stops being readable.
+    Cap the row's width, flatten the picture, and let the type grow with the screen. */
+ .tasks{gap:clamp(10px,1vw,18px);grid-template-columns:repeat(3,1fr)}
+ .task{grid-template-columns:1fr;align-items:stretch}
+ .task .art{aspect-ratio:16/10;height:auto}
+ .task-body{padding:clamp(11px,.95vw,17px) clamp(12px,1vw,18px) clamp(13px,1.1vw,19px)}
+ .task h4{margin-bottom:clamp(4px,.4vw,7px);font-size:clamp(14px,1.15vw,19px)}
+ .task p{font-size:clamp(12.5px,.95vw,15.5px);line-height:1.6}
+
+ .callout{gap:clamp(12px,1.2vw,20px);padding:clamp(14px,1.3vw,22px)}
+ .callout .art{width:clamp(58px,5vw,86px)}
+ .callout p{font-size:clamp(14px,1.15vw,18px)}
+ .note{font-size:clamp(12.5px,.85vw,14px)}
+}
+
+@media(min-width:1180px){
+ .grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ---------- 더 자세히 알아보기 ---------- */
+.subjects{display:grid;gap:9px}
+.subject{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+ box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:4px 11px}
+.subject-name{font:800 14px/1.4 var(--display);white-space:nowrap}
+.subject p{margin:0;font:400 12.5px/1.6 var(--font);color:var(--muted)}
+
+.steps{list-style:none;counter-reset:step;margin:0;padding:0;display:grid;gap:9px}
+.step{counter-increment:step;background:var(--card);border:1px solid var(--line);border-radius:12px;
+ padding:13px 14px 14px 46px;position:relative;box-shadow:var(--shadow)}
+/* the number is drawn by the list, never by the picture — images carry no text at all */
+.step::before{content:counter(step);position:absolute;left:13px;top:13px;width:23px;height:23px;
+ border-radius:50%;background:var(--blue-soft);color:#1b52c4;font:800 12.5px/23px var(--display);text-align:center}
+.step h3{margin:0 0 4px;font:800 13.5px/1.45 var(--display)}
+.step p{margin:0;font:400 12.5px/1.65 var(--font);color:var(--muted)}
+
+.related-why{display:flex;gap:6px;align-items:flex-start;margin:0;padding:0 12px 12px;
+ font:400 12px/1.55 var(--font);color:var(--muted)}
+.related-why svg{width:14px;height:14px;flex:none;margin-top:2px;color:var(--blue)}
+
+.links{display:grid;gap:9px;margin-top:11px}
+.link{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;color:inherit;
+ background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+.link strong{display:block;font:800 13.5px/1.4 var(--display)}
+.link span{font:400 12px/1.5 var(--font);color:var(--muted)}
+.link svg{width:16px;height:16px;flex:none;color:var(--blue)}
+
+/* ---------- display layer ----------
+   Headings and the brand line carry the personality font; paragraphs do not. */
+.brand span,.hero-tag,.section-head h2,.job h3,.detail-caption h1,
+.sub,.qa h3,.task h4,.callout p,.levels button,.pill,.state{font-family:var(--display)}
+.brand span,.hero-tag{letter-spacing:-.01em}
+.detail-caption h1{letter-spacing:-.02em}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>현장노트 · 전기안전관리자 직업 체험</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/jsm/"}}</script>
+</head>
+<body>
+  <header><span class="eyebrow">FIELD NOTE / CAREER EXPERIENCE</span><h1>현장노트 <span>전기안전관리자</span></h1><p id="zone">중계펌프장 · 순회점검</p></header>
+  <button id="missionToggle" aria-controls="mission" aria-expanded="true">수첩 접기</button>
+  <aside id="mission" aria-label="점검 수첩">
+    <!-- the way back to the app shell. At the top because the bottom of this panel sits under the
+         fixed status line and Q button. Progress is saved continuously, so leaving is safe. -->
+    <a id="homeLink" class="home-link" href="job.html?id=electrical-safety">← 직업 소개로 돌아가기</a>
+    <div class="eyebrow">TODAY'S ASSIGNMENT</div><h2 id="missionTitle">순회점검</h2>
+    <p id="missionText">표시를 확인하고 근거를 남기세요.</p>
+    <div class="progress-title"><span>관찰 기록</span><strong id="progressCount">0 / 4</strong></div><progress id="progress" max="4" value="0">0 / 4</progress>
+    <div id="stations"></div>
+    <p class="muted">지점 선택은 안내 이동입니다. F로 실제 표시를 확대하고 R로 읽은 값을 기록하세요. 제어반 문은 E로 열고 닫습니다.</p>
+    <button id="referenceButton">표시·판정 기준 참고</button>
+    <button id="diagnosticNotebook">추가 확인 · 근거 수집</button>
+    <button id="reportButton" class="primary" disabled>점검 보고 작성</button>
+    <button id="notebookButton">기록한 근거 보기</button>
+    <button id="assignmentButton" class="quiet">작업 지시 다시 보기</button>
+    <p id="saveStatus" role="status" class="muted"></p>
+  </aside>
+  <div id="cross" aria-hidden="true">+</div><div id="target" aria-live="polite"></div>
+  <footer><div><strong id="inputHint">드래그하여 둘러보기</strong><p>WASD 이동 · E 문 조작 · F 확대 · R 기록</p><small>현장노트 · 본 파일 / 설비 관찰과 근거 판단</small></div><div class="footer-actions"><button id="inspectButton" disabled>문 열기 · E</button><button id="zoomButton">자세히 보기 · F</button><button id="recordButton" disabled>관찰 기록 · R</button><button id="lock">마우스 잠금</button></div></footer>
+  <button id="diagnosticButton" disabled>추가 확인 · Q</button>
+  <div id="workflowStatus" role="status"></div>
+  <div id="load" role="status">현장을 준비하고 있습니다…</div>
+  <div hidden><span id="alarm"></span><span id="readings"></span><span id="metrics"></span></div>
+  <dialog id="panel" aria-labelledby="panelTitle"><div class="dialog-top"><span class="eyebrow" id="panelKicker">FIELD NOTE</span><button id="closePanel" aria-label="창 닫기">닫기 · Esc</button></div><h2 id="panelTitle"></h2><div id="panelBody"></div></dialog>
+  <div id="fileNotice" hidden><h1>로컬 서버로 열어주세요</h1><p>같은 폴더의 ‘직업체험 시작.cmd’를 실행하면 현장노트가 열립니다.</p></div>
+  <script type="module">
+    const load = document.getElementById('load');
+    if (location.protocol === 'file:') document.getElementById('fileNotice').hidden = false;
+    else import('./world/main.mjs').catch(error => { console.error(error); load.textContent = '현장을 불러오지 못했습니다. 실행 창을 확인하고 새로고침해 주세요.'; load.classList.add('error'); });
+  </script>
+</body></html>

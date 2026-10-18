@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#102a2e">
+ <title>법의관 · 관찰실 | 꿈을 찾아! 드림</title>
+ <link rel="stylesheet" href="forensic/style.css"><link rel="stylesheet" href="forensic/experience.css">
+ <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body class="room-mode">
+ <header class="topbar">
+  <a class="back" href="case.html" aria-label="법의관 사건 업무실로 돌아가기">← <span>사건 업무실</span></a>
+  <div class="brand"><span class="brand-icon" aria-hidden="true">✳</span><div>법의관 <span class="brand-sub">관찰실</span></div></div>
+  <div class="top-actions"><span class="edition">심장 관찰 · 미리 체험</span><button id="caseButton" class="quiet">사건 자료</button><button id="notesButton" class="quiet">기록 <span id="recordCount">0</span></button></div>
+ </header>
+ <main class="workspace">
+  <aside class="case-rail">
+   <div class="rail-title"><span class="eyebrow">CASE FILE</span><span class="case-no">01</span></div>
+   <h1>보이는 것에서<br>근거를 찾다.</h1>
+   <p class="rail-copy">관찰한 사실과 해석을<br>나누어 기록해 보세요.</p>
+   <div class="case-summary"><span class="tiny-dot"></span> 야간 근무 중 발견된 사망<span>FM–01 · 교육용 가상 사례</span></div>
+   <div class="rail-divider"></div>
+   <span class="eyebrow">OBSERVATION ROUTE</span>
+   <nav class="route" aria-label="관찰 단계">
+    <button id="roomButton" class="route-item active"><span class="route-number">00</span><span>부검실<small>공간 둘러보기</small></span><span class="route-check">↗</span></button>
+    <button data-source="surface" class="route-item"><span class="route-number">01</span><span>심장 표면<small>방향을 돌려 관찰</small></span><span class="route-check" data-check="surface">○</span></button>
+    <button data-source="artery-1" class="route-item"><span class="route-number">02</span><span>관상동맥 단면<small>세 단면을 나란히 비교</small></span><span class="route-check" data-check="artery">○</span></button>
+    <button data-source="muscle" class="route-item"><span class="route-number">03</span><span>심근 단면<small>형태와 색을 살펴보기</small></span><span class="route-check" data-check="muscle">○</span></button>
+   </nav>
+   <div class="rail-bottom"><span class="eyebrow">YOUR PROGRESS</span><div class="progress-copy"><strong id="viewCount">0 / 5</strong><span>관찰 화면 확인</span></div><progress id="viewProgress" max="5" value="0"></progress><p>관찰과 기록은 이 브라우저에 저장돼요.</p><span id="saveStatus" role="status"></span></div>
+  </aside>
+  <section class="observation" aria-label="관찰 공간">
+   <div class="view-heading"><div><span id="viewEyebrow" class="eyebrow">AUTOPSY ROOM</span><h2 id="viewTitle">부검실</h2></div><span class="live-badge"><span></span> 3D 관찰</span></div>
+   <div id="canvasHost"></div>
+   <div id="loading" role="status">관찰실을 준비하고 있어요…</div>
+   <div id="sceneError" class="scene-error" hidden><strong>관찰 화면을 열지 못했어요.</strong><p id="sceneErrorText"></p><button id="retryButton" class="primary">새로고침</button></div>
+   <div id="roomWelcome" class="room-guide mission-panel"><span class="eyebrow" id="missionNumber">STEP 1 / 4</span><h2 id="missionTitle">사건 브리핑 확인</h2><p id="missionDetail">오른쪽 벽의 사건 파일에서 시작하세요.</p><ol id="missionSteps"></ol><div class="mission-controls">WASD 이동 · 드래그로 시선 · E 상호작용<br>Q / R 좌우 시선 · Esc 관찰 종료</div><button id="mouseLookButton">마우스로 자유 시선</button><small id="episodeSave"></small></div>
+   <div id="roomMap" aria-label="부검실 위치 안내"><span>ROOM 01 / 동선</span><svg viewBox="0 0 180 190" role="img" aria-label="사건 파일, 심장 작업대, 단말기 위치"><rect x="20" y="15" width="140" height="155" rx="4" class="map-wall"/><rect x="23" y="18" width="134" height="18" class="map-furniture"/><rect x="68" y="62" width="17" height="44" class="map-furniture"/><rect x="105" y="79" width="18" height="14" class="map-furniture"/><g id="map-briefing" class="map-station"><circle cx="155" cy="119" r="8"/><text x="155" y="122">1</text></g><g id="map-heart" class="map-station"><circle cx="114" cy="87" r="8"/><text x="114" y="90">2</text></g><g id="map-terminal" class="map-station"><circle cx="129" cy="26" r="8"/><text x="129" y="29">3</text></g><g id="mapPlayer"><circle r="4"/><path d="M -5 -7 L 0 -13 L 5 -7"/></g></svg><div id="wayfinder"><span id="wayfinderArrow">↑</span><span id="wayfinderText">사건 파일</span></div></div>
+   <div id="roomCrosshair" aria-hidden="true">＋</div>
+   <div id="roomInteraction"><span id="roomPrompt" role="status">오른쪽 벽의 사건 파일을 확인하세요.</span><button id="interactButton" hidden><kbd>E</kbd> 심장 살펴보기</button></div>
+   <div id="walkControls" aria-label="부검실 이동"><div><button data-look="-.18" aria-label="시선 왼쪽">↶</button><button data-look=".18" aria-label="시선 오른쪽">↷</button></div><button data-walk="KeyW" aria-label="앞으로 이동">↑</button><div><button data-walk="KeyA" aria-label="왼쪽으로 이동">←</button><button data-walk="KeyS" aria-label="뒤로 이동">↓</button><button data-walk="KeyD" aria-label="오른쪽으로 이동">→</button></div></div>
+   <button id="returnToRoom" class="return-room" hidden>← 부검실로 돌아가기 · Esc</button>
+   <div id="comparisonLabels" class="comparison-labels" hidden><span>사례 모형</span><span>일반 구조 참고</span></div>
+   <div id="sliceControls" class="slice-controls" hidden aria-label="혈관 단면 선택">
+    <span>단면 위치</span><button data-slice="artery-1" aria-pressed="false">1</button><i></i><button data-slice="artery-2" aria-pressed="false">2</button><i></i><button data-slice="artery-3" aria-pressed="false">3</button>
+   </div>
+   <div id="specimenTools" class="specimen-tools" hidden>
+    <button id="compareButton" aria-pressed="false">◫ <span>참고 구조 비교</span></button>
+    <button id="markButton" aria-pressed="false">⊙ <span>위치 표시</span></button>
+    <button id="centerMarkButton" title="키보드로 지정 위치 표시">표시 놓기 · M</button>
+   </div>
+   <div class="camera-tools" aria-label="화면 조작">
+    <button id="rotateLeft" aria-label="왼쪽으로 회전">↶</button><button id="rotateRight" aria-label="오른쪽으로 회전">↷</button><span></span>
+    <button id="zoomOut" aria-label="축소">−</button><button id="zoomIn" aria-label="확대">+</button><span></span><button id="resetView" aria-label="기본 시점으로">⟲</button>
+   </div>
+   <div class="viewport-foot"><span id="gestureHint">드래그하여 둘러보기</span><span id="modelNotice">교육용 부검실 · 심장: HRA 자료로 만든 모형</span></div>
+  </section>
+  <aside class="notebook" aria-label="관찰 기록 작성">
+   <div class="notebook-head"><span class="eyebrow">OBSERVATION NOTE</span><span class="note-symbol" aria-hidden="true">▤</span><h2>관찰 노트</h2><p>본 것과 생각한 것을 나누어 남겨요.</p></div>
+   <p id="storageWarning" class="storage-warning" role="status" hidden></p>
+   <div id="emptyNote" class="empty-note"><span>01</span><h3>첫 관찰을 시작해 볼까요?</h3><p>왼쪽에서 관찰 부위를 선택하면<br>해당 부위의 기록을 남길 수 있어요.</p><p>작업대 가까이에서 E를 눌러 시작하세요.</p></div>
+   <form id="recordForm" hidden>
+    <div class="source-label"><span>현재 출처</span><strong id="sourceTitle">심장 표면</strong></div>
+    <button type="button" id="endReview" class="secondary full" hidden>기록 확인 끝내기 · 작성하던 메모로</button>
+    <details class="visual-description"><summary>관찰 화면을 글로 확인</summary><p id="sourceDescription"></p></details>
+    <fieldset><legend><b>01</b> 무엇이 보이나요?</legend><div id="observationOptions" class="choices"></div></fieldset>
+    <div class="mark-note"><span id="markStatus">위치 표시 없음</span><button type="button" id="clearMark" hidden>지우기</button></div>
+    <label class="field-label" for="observationMemo">관찰 메모 <span>선택</span></label>
+    <textarea id="observationMemo" maxlength="1200" rows="3" placeholder="어느 부위에서 어떤 모습을 보았나요?"></textarea>
+    <label class="field-label" for="interpretation"><b>02</b> 지금의 생각</label>
+    <select id="interpretation"><option value="pending">추가 확인이 필요함</option><option value="compare">다른 자료와 대조하고 싶음</option><option value="unsure">아직 해석하기 어려움</option></select>
+    <p class="form-hint">모르겠다는 기록도 괜찮아요.<br>지금 보이는 모습만으로 사인을 정하지 않습니다.</p>
+    <button id="saveRecord" type="submit" class="primary full">관찰 기록 저장 <span>＋</span></button>
+    <p id="formMessage" role="status" class="form-message"></p>
+   </form>
+   <div id="nextQuestion" class="next-question" hidden>
+    <span class="eyebrow">NEXT QUESTION</span><h3>무엇을 더 확인할까요?</h3>
+    <label for="questionRecord">연결할 관찰 기록</label><select id="questionRecord"></select>
+    <label for="questionType">확인할 질문</label><select id="questionType"></select>
+    <button id="saveQuestion" class="secondary full">질문 남기기 →</button><p id="questionStatus" role="status"></p>
+    <small>질문을 기록하는 단계입니다.<br>질문을 남겼다면 전문감정 의뢰로 이어갈 수 있습니다.</small><p><a href="consult.html" class="secondary full">전문감정 의뢰실로 →</a></p>
+   </div>
+   <div id="completion" class="completion" hidden><span>✓</span><h3>심장 관찰 기록을 마쳤어요.</h3><p>부검의 한 구간을 경험했습니다.<br>이제 남은 질문을 연결해 전문감정을 의뢰해 보세요.</p><a href="consult.html" class="primary full">전문감정 의뢰로 이어가기 →</a><button id="reviewButton" class="text-button">내 기록 돌아보기 →</button></div>
+  </aside>
+ </main>
+ <dialog id="workstationDialog" aria-labelledby="workstationTitle"><div class="workstation-top"><span id="workstationTitle"></span><button id="closeWorkstation" aria-label="업무 화면 닫기">×</button></div><div id="workstationContent"></div><div class="workstation-footer"><span id="workSaveStatus">FM–01 · 교육용 가상 사례</span><button id="exportEpisode">전체 업무 기록 내보내기</button></div></dialog>
+ <div id="toast" role="status" hidden></div>
+ <dialog id="caseDialog" aria-labelledby="caseTitle"><div class="dialog-top"><span class="eyebrow">CASE FILE / FM–01</span><button class="close-dialog" aria-label="사건 자료 닫기">×</button></div><h2 id="caseTitle">야간 근무 중 발견된 사망</h2><p>52세 남성 시설관리 근무자가 야간 근무 중 의식을 잃은 상태로 발견되었습니다.</p><dl><dt>자료 출처</dt><dd>교육용 사건 접수 요약</dd><dt>이번 관찰 범위</dt><dd>심장 표면 · 관상동맥 세 단면 · 심근 단면</dd><dt>지금 할 일</dt><dd>관찰한 모습을 기록하고, 추가로 확인할 질문을 남깁니다.</dd></dl><div class="dialog-note">이 체험은 가상 사례를 사용합니다. 사례 심장과 그 단면은 HRA 해부학 자료의 심장 하나를 실제로 잘라 만든 교육용 모형입니다. 지방 두께·혈관 굵기와 조직의 색·형태는 교육용으로 재구성했습니다. 표면 화면의 「일반 구조 참고」는 별도로 제작한 상세 정상 심장 모형(v0.6)입니다. 어느 것도 실제 사례 검체가 아니며 의학 감수를 받지 않았습니다. 실제 부검·진단 절차를 훈련하는 자료가 아닙니다.</div><p class="asset-credit">사례 심장·혈관 원본: <a href="https://humanatlas.io/3d-reference-library" target="_blank" rel="noopener">Human Reference Atlas</a> / Visible Human Male (NLM), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. 이 앱에서 자르고 지방·혈관 굵기·재질을 재구성. <a href="assets/forensic/CREDITS.md" target="_blank">자세한 출처</a></p><button class="primary close-dialog">관찰로 돌아가기</button></dialog>
+ <dialog id="notesDialog" aria-labelledby="notesTitle"><div class="dialog-top"><span class="eyebrow">MY OBSERVATIONS</span><button class="close-dialog" aria-label="기록 창 닫기">×</button></div><h2 id="notesTitle">내 관찰 기록</h2><p class="dialog-intro">기록을 선택하면 당시의 부위와 표시를 다시 볼 수 있어요.</p><div id="recordList"></div><div class="dialog-actions"><button id="exportButton" class="secondary">기록 파일로 저장</button><button class="close-dialog secondary">닫기</button></div></dialog>
+ <noscript>이 체험을 이용하려면 자바스크립트를 켜 주세요.</noscript>
+ <script type="module">
+  import('./forensic/main.mjs').catch(error=>{
+   console.error(error);document.getElementById('loading').hidden=true;
+   document.getElementById('sceneError').hidden=false;
+   document.getElementById('sceneErrorText').textContent='불러오기에 실패했습니다. 로컬 서버가 실행 중인지 확인해 주세요.';
+   document.getElementById('retryButton').onclick=()=>location.reload();
+  });
+ </script>
+</body>
+</html>

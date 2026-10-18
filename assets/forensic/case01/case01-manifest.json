@@ -1,0 +1,58 @@
+{
+ "note": "HRA Visible Human Male 심장 하나를 자른 교육용 모형. 병변·섬유화·지방·혈관 굵기는 교육용 표현이며 의학 감수 전.",
+ "parts": {
+  "artery-1": {
+   "name": "artery-1",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 146680
+  },
+  "artery-1-ref": {
+   "name": "artery-1-ref",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 136108
+  },
+  "artery-2": {
+   "name": "artery-2",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 126700
+  },
+  "artery-2-ref": {
+   "name": "artery-2-ref",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 116144
+  },
+  "artery-3": {
+   "name": "artery-3",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 91000
+  },
+  "artery-3-ref": {
+   "name": "artery-3-ref",
+   "mm_per_unit": 4.1667,
+   "extent_mm": 10.0,
+   "bytes": 86560
+  },
+  "muscle": {
+   "name": "muscle",
+   "mm_per_unit": 28.0215,
+   "extent_mm": 67.25,
+   "bytes": 513304
+  },
+  "muscle-ref": {
+   "name": "muscle-ref",
+   "mm_per_unit": 28.0215,
+   "extent_mm": 67.25,
+   "bytes": 455704
+  },
+  "surface": {
+   "name": "surface",
+   "mm_per_unit": 45.0262,
+   "bytes": 7488760
+  }
+ }
+}

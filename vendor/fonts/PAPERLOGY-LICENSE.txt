@@ -1,0 +1,15 @@
+Paperlogy (페이퍼로지)
+
+Copyright (c) 2024 PT&
+Designer: redesigned by Lee Juim (glyphs from Gmarket Sans & Montserrat)
+Vendor: www.designptn.com
+Version: 1.001
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is available with a FAQ at: https://scripts.sil.org/OFL
+Full licence text: http://scripts.sil.org/OFL
+
+이 폴더의 woff2 파일은 위 원본 TTF에서 한글 음절·라틴·문장부호 영역만 남겨
+서브셋한 뒤 woff2로 변환한 것이다. 폰트 내부의 라이선스 표기는 그대로 보존했다.
+원본 배포본: Paperlogy-1.001.zip (TTF 9종)
+확인일: 2026-09-19
